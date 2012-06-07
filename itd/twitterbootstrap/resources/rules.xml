@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rules
+  xmlns="http://namespaces.plone.org/diazo"
+  xmlns:css="http://namespaces.plone.org/diazo/css"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+  <rules css:if-content="#visual-portal-wrapper">
+
+
+    <!-- <theme href="homepage.html"
+        css:if-content="body.section-home"/> -->
+    <theme href="content.html" />
+
+    <!-- Head elements -->
+    <replace css:theme="html head title" css:content="html head title" />
+    <after css:theme-children="html head" css:content="html head base" />
+    <after css:theme-children="html head" css:content="html head script" />
+    <before css:theme-children="html head" css:content="html head link" />
+    <!-- body classes -->
+    <merge attributes="class" css:theme="body" css:content="body" />
+
+    <!-- Logo -->
+    <copy attributes="href" css:theme="#brand" css:content="#portal-logo" />
+
+    <!-- Tabs -->
+    <replace css:theme-children="#top-nav-list"
+            css:content-children="#portal-globalnav" />
+    <drop css:content="#portaltab-index_html" />
+
+    <!-- Personal tools -->
+    <!-- <replace css:theme="#account-info"
+            css:content="#portal-personaltools" /> -->
+    <!-- site-actions -->
+    <!-- <replace css:content-children="#portal-personaltools-wrapper"
+            css:theme-children="#portal-personaltools-wrapper" /> -->
+
+    <!-- Search -->
+    <copy attributes="action" css:theme="#searchbox"
+            css:content="#portal-searchbox form" />
+    <copy attributes="name" css:theme="#searchbox .search-query"
+            css:content="#portal-searchbox form .searchField" />
+
+    <!--
+    if the body has a class of template-search (and other stuff),
+    either of these should work.
+
+    //*[contains(concat(' ', @class, ' '), ' atag ')]
+    //div[contains(concat(' ',normalize-space(@class),' '),' foo ')]
+    Use the latter if there are separators in the tag other than a space.
+    -->
+    <drop css:theme="div.hero-unit"
+            if-content="//body[contains(concat(' ',
+            @class,' '),
+            'template-search')]"/>
+
+    <drop css:theme="div.hero-unit"
+        css:if-content=".template-atct_edit"/>
+    <drop css:theme="div.hero-unit"
+        css:if-content=".template-login_form"/>
+
+
+    <!-- Edit bar -->
+    <before css:theme-children="#content" css:content="#edit-bar" />
+    <replace css:content-children="h1.documentFirstHeading"
+            css:theme-children="#content-title" />
+    <replace css:content-children=".documentDescription"
+            css:theme-children="#documentDescription" />
+
+
+<!--     <drop theme="//*[@class='documentFirstHeading']" />
+ -->        <!-- documentDescription -->
+
+
+    <!-- conditional side-columns -->
+     <drop css:theme="#right-column"
+            if-content="not(//*[@id='portal-column-two'])"/>
+     <drop css:theme="#left-column"
+            if-content="not(//*[@id='portal-column-one'])"/>
+
+     <!-- Portal messages -->
+
+    <!-- Main columns -->
+    <rules if-content="not(//*[@id='portal-column-two'])">
+      <drop css:theme="#main-body-width" attributes="class"/>
+      <drop css:theme="#col3"/>
+    </rules>
+
+
+
+    <!-- Change the main-body-width if there is no portal-column-one -->
+    <rules if-content="not(//*[@id='portal-column-one'])">
+      <prepend theme="//div[@id='main-body-width']">
+        <xsl:attribute name="class">
+        <xsl:value-of select="//div[@id='main-body-width']/@class"/>span10</xsl:attribute>
+      </prepend>
+      <drop css:theme="#col1"/>
+    </rules>
+
+    <!-- Change the main-body-width if there is no portal-column-two -->
+    <rules if-content="not(//*[@id='portal-column-two'])">
+      <prepend theme="//div[@id='main-body-width']">
+        <xsl:attribute name="class">
+        <xsl:value-of select="//div[@id='main-body-width']/@class"/>span10</xsl:attribute>
+      </prepend>
+      <drop css:theme="#col2"/>
+    </rules>
+
+    <!-- Change the main-body-width if there are no columns-->
+    <rules if-content="not(//*[@id='portal-column-one'])">
+      <rules if-content="not(//*[@id='portal-column-two'])">
+        <prepend theme="//div[@id='main-body-width']">
+          <xsl:attribute name="class">
+          <xsl:value-of select="//div[@id='main-body-width']/@class"/>span12</xsl:attribute>
+        </prepend>
+        <drop css:theme="#col1"/>
+        <drop css:theme="#col2"/>
+      </rules>
+    </rules>
+
+
+    <!--    <replace css:content-children="#content"
+            css:theme-children="#content" /> -->
+    <replace css:content-children="#portal-column-content"
+            css:theme-children="#content-core" />
+    <!-- <replace css:content-children="#portal-column-one"
+             css:theme-children="#left-column" /> -->
+    <replace css:content-children="#portal-column-one"
+            css:theme-children="#left-column .well" />
+    <replace css:content-children="#portal-column-two"
+            css:theme-children="#right-column" />
+
+
+    <!-- Portletpage manipulations - //div[@id='portletPageTopRow']/div -->
+    <replace css:content="#portletPageColumns"
+            css:theme-children="#content-core" />
+
+
+    <!-- personaltools anon and user ID link stuff -->
+    <rules css:if-content="#user-name" >
+        <replace css:theme-children="#header-user-login"
+            css:content-children="#user-name"/>
+        <copy attributes="href"
+            css:theme="#header-user-login"
+            css:content="#user-name"/>
+    </rules>
+
+    <rules css:if-content="#personaltools-login">
+        <replace css:theme-children="#header-user-login"
+            css:content-children="#personaltools-login" />
+        <copy attributes="href"
+            css:theme="#header-user-login"
+            css:content="#personaltools-login"/>
+        <drop css:theme="#header-user-id-dropdown"/>
+    </rules>
+    <!-- drops a useless diazo replace for a # in the template. -->
+     <drop attributes="href"
+        css:theme="#header-user-id-dropdown"
+        />
+
+    <replace css:content-children="#personaltools-dashboard" >
+
+            <i class='icon-pencil'></i> <xsl:value-of  select="."/>
+
+    </replace>
+
+
+    <!-- <drop content="//*[@id='personaltools-dashboard']"/> -->
+
+
+    <!-- Action menu -->
+    <!-- <replace content-children="//ul[@id='portal-siteactions']"
+      css:theme-children="#admin-items" /> -->
+
+    <replace css:content-children="#portal-personaltools dd ul"
+        css:theme-children="#admin-items" />
+
+<!-- #personaltools-dashboard a:before {content: "<i class='icon-pencil'></i> "} -->
+
+
+    <!-- Footer -->
+    <!-- replace css:theme-children="#footer"
+    css:content-children="#portal-footer" / -->
+
+    <drop css:content="#parent-fieldname-title" />
+    <drop css:content="#parent-fieldname-description" />
+    <drop css:content="#content .documentFirstHeading" />
+    <drop css:content="#content .documentDescription" />
+
+    </rules>
+
+</rules>

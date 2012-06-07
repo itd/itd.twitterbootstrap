@@ -1,0 +1,396 @@
+_hpc4-theme_junk.txt
+========================
+
+https://github.com/davatron5000/FitText.js
+https://github.com/davatron5000/FitVids.js
+
+
+
+
+<!--         <replace css:theme="#account-info" css:content="#portal-personaltools" />
+ -->        <!-- site-actions -->
+<!--         <replace css:content-children="#portal-personaltools dt dd ul"
+                css:theme-children="ul.nav.pull-right" />
+
+        <after css:theme-children="ul.nav.pull-right"
+                css:content-children="ul#portal-siteactions ul" />
+ -->
+portal-personaltools-wrapper
+
+
+    <div class="navbar navbar-fixed-top">
+
+      <!-- The nifty drop-down thingy for logged-in users, top-right corner. -->
+      <div id="portal-personaltools-wrapper">
+
+        <h5 class="hiddenStructure">Personal tools</h5>
+
+        <dl id="portal-personaltools" class="actionMenu deactivated">
+
+          <dt class="actionMenuHeader">
+            <a href="#" id="user-name">username</a>
+          </dt>
+          <dd class="actionMenuContent">
+            <ul>
+                <li id="personaltools-dashboard">
+                    <a href="#">Dashboard</a>
+                </li>
+                <li id="personaltools-preferences">
+                    <a href="#">Preferences</a>
+                </li>
+                <li id="personaltools-plone_setup">
+                    <a href="#">Site Setup</a>
+                </li>
+                <li id="personaltools-logout">
+                    <a href="#">Log out</a>
+                </li>
+            </ul>
+          </dd>
+
+        </dl>
+      </div>
+
+
+
+
+
+<!--           <xsl:strip-space elements="*" />
+
+content="//h1[@id='first-heading']/text()"
+-->
+
+
+
+
+<!-- drop will drop, and so will copy, but it won't replace with a value
+<drop theme="//div[@id='main-body-width']" attributes="class">span10</drop> -->
+<!-- <copy attributes="class" css:theme="div#main-body-width"><xsl:value> span10</xsl:value></copy> -->
+<!-- <xsl:attribute name="class">span10</xsl:attribute>-->
+
+
+<!-- <replace theme="//div[@id='main-body-width']" attributes="class"> span10</replace> -->
+
+
+
+
+
+
+
+
+
+
+
+      <!-- The main content area -->
+      <div class="row">
+        <div class="span4">
+          <h2>High Performance Computing</h2>
+           <p>Scientific Computing maintains access to several HPC computing resources.
+            They include:</p>
+            <ul>
+              <li>Red Rock</li>
+              <li>Red Mesa</li>
+              <li>Windows HPC</li>
+              <li>BC3</li>
+              <li>Long-term storage</li>
+            </ul>
+          <p><a class="btn" href="#">View more details &raquo;</a></p>
+        </div>
+        <div class="span4">
+          <h2>Current System Status</h2>
+           <p>Here is the current operational status for the HPC compute systems:</p>
+           <div id="fp-systemstatus">(the system status indicators go here)</div>
+          <p><a class="btn" href="#">View details &raquo;</a></p>
+       </div>
+        <div class="span4">
+          <h2>Job Status</h2>
+
+          <ul class="nav nav-tabs" id="tab">
+            <li class="active"><a data-toggle="tab" href="#redrock-t">RedRock</a></li>
+            <li class=""><a data-toggle="tab" href="#redmesa-t">RedMesa</a></li>
+            <li class=""><a data-toggle="tab" href="#bc3-t">BC3</a></li>
+            <li class=""><a data-toggle="tab" href="#winhpc-t">WinHPC</a></li>
+          </ul>
+
+
+          <div class="tab-content" id="myTabContent">
+            <div id="redrock-t" class="tab-pane fade">
+              <table id="redrock-stats" class="table table-striped">
+                  <caption></caption>
+                  <thead>
+                      <tr>
+                          <th>Acct</th>
+                          <th>Jobs</th>
+                          <th>Processes</th>
+                      </tr>
+                  </thead>
+                  <tbody class="tStatus">
+                  </tbody>
+              </table>
+            </div>
+
+            <div id="redmesa-t" class="tab-pane fade active in">
+              <table id="redmesa-stats" class="table table-striped">
+                <caption>Last read: </caption>
+                <thead>
+                  <tr>
+                    <th>Acct</th>
+                    <th>Jobs</th>
+                    <th>Processes</th>
+                  </tr>
+                </thead>
+                <tbody class="tStatus">
+                </tbody>
+              </table>
+            </div>
+
+            <div id="bc3-t" class="tab-pane fade">
+              <table id="bc3-stats" class="table table-striped">
+                <caption>Last read: </caption>
+                <thead>
+                  <tr>
+                    <th>Acct</th>
+                    <th>Jobs</th>
+                    <th>Processes</th>
+                  </tr>
+                </thead>
+                <tbody class="tStatus">
+                </tbody>
+              </table>
+            </div>
+
+            <div id="winhpc-t" class="tab-pane fade">
+              <table id="winhpc-stats" class="table table-striped">
+                <caption>Last read: </caption>
+                <thead>
+                  <tr>
+                    <th>Acct</th>
+                    <th>Jobs</th>
+                    <th>Processes</th>
+                  </tr>
+                </thead>
+                <tbody class="tStatus">
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+
+
+
+
+$(document).ready(function() {
+
+    jQuery.ajax({
+    url: "http://localhost:6543/showstats?sk=redrock",
+        dataType: "jsonp",
+        async: false,
+        success: function(data, textStatus, jqXHR) {
+            $.each(data.jobs, function(i,job){
+                $("#redrock-stats > tbody").append('<tr>'
+                    + '<td>'+ job.acct
+                    + '<td>' + job.activejobs
+                    + '<td>' + job.procs
+                    );
+                });
+            $("#redrock-stats caption").append(data.time);
+            }
+        });
+
+
+    jQuery.ajax({
+    url: "http://localhost:6543/showstats?sk=redmesa",
+        dataType: "jsonp",
+        async: false,
+        success: function(data, textStatus, jqXHR) {
+            $.each(data.jobs, function(i,job){
+                $("#redmesa-stats > tbody").append('<tr>'
+                    + '<td>'+ job.acct
+                    + '<td>' + job.activejobs
+                    + '<td>' + job.procs
+                    );
+                });
+            $("#redmesa-stats caption").append(data.time);
+            }
+        });
+
+
+    jQuery.ajax({
+    url: "http://localhost:6543/showstats?sk=bc3",
+        dataType: "jsonp",
+        async: false,
+        success: function(data, textStatus, jqXHR) {
+            $.each(data.jobs, function(i,job){
+                $("#bc3-stats > tbody").append('<tr>'
+                    + '<td>'+ job.acct
+                    + '<td>' + job.activejobs
+                    + '<td>' + job.procs
+                    );
+                });
+            $("#bc3-stats caption").append(data.time);
+            }
+        });
+
+
+    jQuery.ajax({
+    url: "http://localhost:6543/showstats?sk=winhpc",
+        dataType: "jsonp",
+        async: false,
+        success: function(data, textStatus, jqXHR) {
+            $.each(data.jobs, function(i,job){
+                $("#winhpc-stats > tbody").append('<tr>'
+                    + '<td>'+ job.acct
+                    + '<td>' + job.activejobs
+                    + '<td>' + job.procs
+                    );
+                });
+            $("#winhpc-stats caption").append(data.time);
+            }
+        });
+
+
+
+
+    });
+
+
+document.write(Date());
+
+
+### need to set up icons for these:
+
+personaltools-dashboard
+personaltools-preferences
+personaltools-plone_setup
+personaltools-logout
+
+#portal-personaltools dt.actionMenuHeader a:after {
+    content: " ▼";
+}
+
+#personaltools-dashboard a:after {"<i class='icon-pencil'></i> "}
+#personaltools-preferences
+#personaltools-plone_setup
+#personaltools-logout
+
+
+This sort of works:
+    <replace css:content="#personaltools-dashboard" >
+        <li id="personaltools-dashboard">
+          <xsl:for-each select="id('personaltools-dashboard')/a">
+              <i class='icon-pencil'></i> <xsl:value-of  select="."/>
+          </xsl:for-each>
+      </li>
+    </replace>
+
+so does this:
+    <replace css:content-children="#personaltools-dashboard" >
+              <i class='icon-pencil'></i> &&nbsp;  <xsl:value-of  select="."/>
+    </replace>
+
+
+
+
+
+
+
+
+            <div id="homepage-gadgets" class="row-fluid">
+
+              <div class="span4">
+                <h2>High Performance Computing</h2>
+                 <p>Scientific Computing maintains access to several HPC computing resources.
+                  They include:</p>
+                  <ul>
+                    <li>Red Rock</li>
+                    <li>Red Mesa</li>
+                    <li>Windows HPC</li>
+                    <li>BC3</li>
+                    <li>Long-term storage</li>
+                  </ul>
+                <p><a class="btn" href="#">View more details &raquo;</a></p>
+              </div>
+
+              <div class="span4">
+                <h2>Current System Status</h2>
+                 <p>Here is the current operational status for the HPC compute systems:</p>
+                 <div id="fp-systemstatus">(the system status indicators go here)</div>
+                <p><a class="btn" href="#">View details &raquo;</a></p>
+              </div>
+
+
+              <!-- ####### job status ####### -->
+              <div class="span4" id="job-status">
+                <h2>Job Status</h2>
+
+                <ul class="nav nav-tabs" id="tab">
+                  <li class="active"><a data-toggle="tab" href="#redrock-t">RedRock</a></li>
+                  <li class=""><a data-toggle="tab" href="#redmesa-t">RedMesa</a></li>
+                  <li class=""><a data-toggle="tab" href="#bc3-t">BC3</a></li>
+                  <li class=""><a data-toggle="tab" href="#winhpc-t">WinHPC</a></li>
+                </ul>
+
+                <div class="tab-content" id="myTabContent">
+                  <div id="redrock-t" class="tab-pane fade">
+                    <table id="redrock-stats" class="table table-striped">
+                        <caption></caption>
+                        <thead>
+                            <tr>
+                                <th>Acct</th>
+                                <th>Jobs</th>
+                                <th>Processes</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tStatus">
+                        </tbody>
+                    </table>
+                  </div>
+
+                  <div id="redmesa-t" class="tab-pane fade active in">
+                    <table id="redmesa-stats" class="table table-striped">
+                      <caption>Last read: </caption>
+                      <thead>
+                        <tr>
+                          <th>Acct</th>
+                          <th>Jobs</th>
+                          <th>Processes</th>
+                        </tr>
+                      </thead>
+                      <tbody class="tStatus">
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div id="bc3-t" class="tab-pane fade">
+                    <table id="bc3-stats" class="table table-striped">
+                      <caption>Last read: </caption>
+                      <thead>
+                        <tr>
+                          <th>Acct</th>
+                          <th>Jobs</th>
+                          <th>Processes</th>
+                        </tr>
+                      </thead>
+                      <tbody class="tStatus">
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div id="winhpc-t" class="tab-pane fade">
+                    <table id="winhpc-stats" class="table table-striped">
+                      <caption>Last read: </caption>
+                      <thead>
+                        <tr>
+                          <th>Acct</th>
+                          <th>Jobs</th>
+                          <th>Processes</th>
+                        </tr>
+                      </thead>
+                      <tbody class="tStatus">
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div> <!-- /#job-status -->
+
+
+            </div> <!-- #homepage-gadgets .row-fluid -->

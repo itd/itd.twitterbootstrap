@@ -1,0 +1,23 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="itd.twitterbootstrap">
+
+  <includeDependencies package="." />
+
+  <plone:static
+    directory="resources"
+    type="theme" />
+
+  <genericsetup:registerProfile
+      name="default"
+      title="itd.twitterbootstrap"
+      directory="profiles/default"
+      description="Installs the itd.twitterbootstrap package."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+  <!-- -*- extra stuff goes here -*- -->
+
+</configure>
