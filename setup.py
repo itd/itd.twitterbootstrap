@@ -20,7 +20,7 @@ setup(name='itd.twitterbootstrap',
       url='http://tool.net/',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
-      namespace_packages=['nrel'],
+      namespace_packages=['itd'],
       include_package_data=True,
       zip_safe=False,
       install_requires=[
