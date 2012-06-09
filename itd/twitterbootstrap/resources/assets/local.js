@@ -30,3 +30,11 @@
   })
 
 }(window.jQuery)
+
+// FitText.js text resize magic
+$("#content-title").fitText(1.2);
+$("#documentDescription").fitText(4.0);
+// examples
+//$("#fittext3").fitText(1.1, { minFontSize: 50, maxFontSize: '75px' });
+//$("#fittext3").fitText(1.1, { minFontSize: '1em', maxFontSize: '3em' });
+//$("#fittext3").fitText(1.1, { minFontSize: 50, maxFontSize: '75px' });

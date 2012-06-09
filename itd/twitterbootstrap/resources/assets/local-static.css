@@ -7,10 +7,13 @@
 /* Add additional stylesheets below
 -------------------------------------------------- */
 /*
-  Bootstrap's documentation styles
-  Special styles for presenting Bootstrap's documentation and examples
+  To really screw thins up takes a computer.
+  Or a BFH.
 */
-
+/* Taske this, for example...*/
+img, object {
+    max-width: 100%;
+}
 
 /* Body and structure
 -------------------------------------------------- */
@@ -27,9 +30,9 @@ body {
 /* Tweak navbar brand link to be super sleek
 -------------------------------------------------- */
 .navbar-fixed-top .brand {
-  padding-right: 1em;
+  padding-right: 0.75em;
   padding-left: 0;
-  margin-left: 20px;
+  margin-left: 0.25em;
   float: left;
   font-weight: bold;
   color: #eee;
@@ -220,6 +223,19 @@ hr.soften {
 }
 
 
+  /* login form tweaks - looks like poo
+  -------------------------------------------------- */
+  #login-form .formControls input {
+    margin: 0;
+  }
+  #login-form .formControls {
+    margin: 0;
+  }
+
+  #fieldset-openid-login label, #login-form label {
+    text-align: left;
+  }
+
 
 /* Footer
 -------------------------------------------------- */
@@ -266,7 +282,7 @@ hr.soften {
 
 
 
-/* Responsive Docs
+/* Responsive Stuff
 ============================================================  */
 @media (max-width: 480px) {
 
@@ -288,8 +304,8 @@ hr.soften {
   }
 
   .hero-unit {
-      margin-bottom: 15px;
-      padding: 2em;
+    margin-bottom: 15px;
+    padding: 2em;
   }
   .hero-unit h1.documentFirstHeading {
       font-size: 250%;
@@ -348,6 +364,7 @@ hr.soften {
     padding: none;
   }
 
+
   #footer {
     border: none;
     margin: 0;
@@ -400,6 +417,12 @@ hr.soften {
   }
 
 
+  #col1{
+    height: 0;
+    visibility: hidden;
+  }
+
+
   /* Unfloat the back to top link in footer */
   #footer .pull-right {
     float: none;
@@ -435,7 +458,6 @@ hr.soften {
   body {
     padding-top: 0;
   }
-
 
   .section-home .nav-tabs > li > a {
       line-height: 8px;
