@@ -394,3 +394,41 @@ so does this:
 
 
             </div> <!-- #homepage-gadgets .row-fluid -->
+
+
+
+
+    <!-- Logo -->
+    <copy attributes="href"
+      css:content="#portal-logo" css:theme=".brand" />
+    <copy attributes="title"
+      css:content="#portal-logo" css:theme=".brand" />
+     <xsl:value-of select="@title"/>
+
+
+
+
+      <prepend theme="//div[@id='main-body-width']">
+        <xsl:attribute name="class">
+        <xsl:value-of select="//div[@id='main-body-width']/@class"/>span10</xsl:attribute>
+      </prepend>
+
+
+    <copy attributes="title"
+      css:content="#portal-logo" theme=".//*[@class='brand']" />
+          <!-- replace css:theme-children=".brand"
+      content="//[@id='portal-logo']/@title" / -->
+
+    <replace
+      theme-content=".//*[@class='brand']/text()"
+      content=".//*[@id='portal-logo']/@title" />
+
+
+
+<replace css:content-children="#portal-logo">
+<xsl:template match="//[@id='portal-logo']@title">
+   <xsl:value-of select="@title"/>
+</xsl:template>
+</replace>
+
+
