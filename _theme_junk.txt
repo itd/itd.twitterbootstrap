@@ -4,6 +4,8 @@ _hpc4-theme_junk.txt
 https://github.com/davatron5000/FitText.js
 https://github.com/davatron5000/FitVids.js
 
+Another text resizing option...
+https://github.com/zachleat/BigText
 
 
 
