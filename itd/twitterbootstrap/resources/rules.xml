@@ -4,6 +4,8 @@
   xmlns:css="http://namespaces.plone.org/diazo/css"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
+
+
   <rules css:if-content="#visual-portal-wrapper">
 
 
@@ -20,7 +22,31 @@
     <merge attributes="class" css:theme="body" css:content="body" />
 
     <!-- Logo -->
-    <copy attributes="href" css:theme="#brand" css:content="#portal-logo" />
+    <copy attributes="href"
+      css:content="#portal-logo" css:theme=".brand" />
+    <copy attributes="title"
+      css:content="#portal-logo" css:theme=".brand" />
+
+
+    <!-- How in the heck am I going to pull the value of an attribute
+    and shove it into the content of the div?!?!?!?!
+
+    <copy content="//*[@id='portal-logo']/@title"
+      css:theme-children=".brand" />
+
+    <replace css:content="#portal-logo" >
+       <xsl:value-of select="//*[@id='portal-logo']/@title"/>
+    </replace>
+
+
+    <replace theme-children=".//*[@class='brand']">
+      <xsl:attribute name="title">
+        <xsl:value-of select="//*[@id='portal-logo']/@title"/>
+      </xsl:attribute>
+    </replace>
+     -->
+
+
 
     <!-- Tabs -->
     <replace css:theme-children="#top-nav-list"
