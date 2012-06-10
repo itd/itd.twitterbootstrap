@@ -22,32 +22,9 @@
     <merge attributes="class" css:theme="body" css:content="body" />
 
     <!-- Logo -->
-    <!-- <copy attributes="href"
-      css:content="#portal-logo" css:theme=".brand" />
-    <copy attributes="title"
-      css:content="#portal-logo" css:theme=".brand" /> -->
-    <replace theme="//*[@id='portal-logo']"
-            content="//a[@class='brand']" />
-
-    <!-- How in the heck am I going to pull the value of an attribute
-    and shove it into the content of the div?!?!?!?!
-
-    <copy content="//*[@id='portal-logo']/@title"
-      css:theme-children=".brand" />
-
-    <replace css:content="#portal-logo" >
-       <xsl:value-of select="//*[@id='portal-logo']/@title"/>
-    </replace>
-
-
-    <replace theme-children=".//*[@class='brand']">
-      <xsl:attribute name="title">
-        <xsl:value-of select="//*[@id='portal-logo']/@title"/>
-      </xsl:attribute>
-    </replace>
-     -->
-
-
+    <replace content="//*[@id='portal-logo']/text()"
+      theme-children="//a[@class='brand']"
+      />
 
     <!-- Tabs -->
     <replace css:theme-children="#top-nav-list"
