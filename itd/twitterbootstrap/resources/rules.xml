@@ -22,11 +22,12 @@
     <merge attributes="class" css:theme="body" css:content="body" />
 
     <!-- Logo -->
-    <copy attributes="href"
+    <!-- <copy attributes="href"
       css:content="#portal-logo" css:theme=".brand" />
     <copy attributes="title"
-      css:content="#portal-logo" css:theme=".brand" />
-
+      css:content="#portal-logo" css:theme=".brand" /> -->
+    <replace theme="//*[@id='portal-logo']"
+            content="//a[@class='brand']" />
 
     <!-- How in the heck am I going to pull the value of an attribute
     and shove it into the content of the div?!?!?!?!
@@ -204,8 +205,8 @@
 
 
     <!-- Footer -->
-    <!-- replace css:theme-children="#footer"
-    css:content-children="#portal-footer" / -->
+    <replace css:theme-children="#footer"
+    css:content-children="#portal-footer" />
 
     <drop css:content="#parent-fieldname-title" />
     <drop css:content="#parent-fieldname-description" />
