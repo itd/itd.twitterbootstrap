@@ -1,0 +1,6 @@
+<!-- theme.xml -->
+<!-- Automagically enable the theme on install -->
+<theme>
+    <name>itd.twitterbootstrap</name>
+    <enabled>true</enabled>
+</theme>
