@@ -45,7 +45,13 @@ body {
   text-decoration: none;
 }
 
+.navbar .divider-vertical {
+    height: 100%;
+}
 
+.navbar .btn-group {
+    padding: 6px 0px 0px 5px;
+}
 /* Space out sub-sections more
 -------------------------------------------------- */
 section {
