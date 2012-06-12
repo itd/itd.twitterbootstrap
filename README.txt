@@ -11,6 +11,33 @@ I think it'll work alright.
 Your mileage may vary.
 
 
+Opinions
+---------------
+Yeah, we all have them. If tell me something sucks here,
+maybe I'll fix it.
+
+
+CSS and JS
+-------------
+I ripped the CSS and JS straight from the latest
+twitter boostrap example assets. Then, I applied
+silly overrides as I felt I needed to. Granted, my
+methods may not be the cleanest. You'll find my overrides
+in the './resources/' folder in these files:
+  local-static.css
+  local.js
+
+Tweak away. remove the content, do whatever. :-)
+It's all yours!
+
+
+Template overrides
+---------------------
+I added overrides for 'logo.pt' and 'footer.pt' inside
+'./resources/overrides/'
+Look in that folder for a little doc-age.
+
+
 Other goodies
 ------------------
 
