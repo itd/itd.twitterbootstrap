@@ -5,4 +5,9 @@
     expression="request/HTTP_X_THEME_ENABLED | nothing"
     applyPrefix="True" />
 
+  <!-- hide public.css if the theme is enabled -->
+  <stylesheet
+    id="public.css"
+    expression="not: request/HTTP_X_THEME_ENABLED | nothing"
+    />
 </object>
