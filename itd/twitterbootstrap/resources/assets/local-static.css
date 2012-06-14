@@ -32,7 +32,9 @@ body {
 .navbar-fixed-top .brand {
   padding-right: 0.75em;
   padding-left: 0;
+  padding-top: 0.8em;
   margin-left: 0.25em;
+  line-height: 0.6em;
   float: left;
   font-weight: bold;
   color: #eee;
@@ -41,6 +43,7 @@ body {
      -moz-transition: all .2s linear;
           transition: all .2s linear;
 }
+
 .navbar-fixed-top .brand:hover {
   text-decoration: none;
 }
@@ -51,6 +54,14 @@ body {
 
 .navbar .btn-group {
     padding: 6px 0px 0px 5px;
+}
+
+#top-nav-list li a {
+  font-size: 111%;
+  padding: 16px 10px 11px;
+}
+.navbar .nav > li > a {
+  line-height: 1em;
 }
 /* Space out sub-sections more
 -------------------------------------------------- */
