@@ -77,11 +77,13 @@ hr.soften {
 }
 
 
-
-/* personaltools tweaks
+/* personaltools droptdown tweaks
 ------------------------------------------------- */
-/*#personaltools-dashboard a:before {content: "<i class='icon-pencil'></i> "}
-*/
+#admin-items a i {
+    margin: 0 14px 0 -4px;
+}
+
+
 
 #admin-items i.icon-pencil {margin: 0 11px 0 0;}
 
