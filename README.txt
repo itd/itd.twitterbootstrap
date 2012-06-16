@@ -3,7 +3,7 @@ Introduction
 Another Plone theme based on Twitter Bootstrap.
 Mostly tested with with Plone 4.2rc2.
 
-Abuses Diazo goodness.
+Abuses Diazo goodness using my trademarked Frankentheme approach.
 
 Handles showing and hiding columns in a weird way.
 I think it'll work alright.

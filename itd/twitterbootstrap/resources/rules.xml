@@ -156,29 +156,29 @@
             css:content="#personaltools-login"/>
         <drop css:theme="#header-user-id-dropdown"/>
     </rules>
+
     <!-- drops a useless diazo replace for a # in the template. -->
-     <drop attributes="href"
-        css:theme="#header-user-id-dropdown"
-        />
-
-    <replace css:content-children="#personaltools-dashboard" >
-
-            <i class='icon-pencil'></i> <xsl:value-of  select="."/>
-
-    </replace>
-
-
-    <!-- <drop content="//*[@id='personaltools-dashboard']"/> -->
-
+    <drop attributes="href"
+      css:theme="#header-user-id-dropdown"
+      />
 
     <!-- Action menu -->
-    <!-- <replace content-children="//ul[@id='portal-siteactions']"
-      css:theme-children="#admin-items" /> -->
-
     <replace css:content-children="#portal-personaltools dd ul"
         css:theme-children="#admin-items" />
 
-<!-- #personaltools-dashboard a:before {content: "<i class='icon-pencil'></i> "} -->
+    <!-- icon mojo for the personaltools dropdowns once logged-in -->
+    <replace css:content-children="#personaltools-dashboard > a" >
+      <i class='icon-pencil'></i> <xsl:value-of  select="."/>
+    </replace>
+    <replace css:content-children="#personaltools-preferences > a">
+      <i class='icon-user'></i> <xsl:value-of  select="."/>
+    </replace>
+    <replace css:content-children="#personaltools-plone_setup > a">
+      <i class='icon-cog'></i> <xsl:value-of  select="."/>
+    </replace>
+    <replace css:content-children="#personaltools-logout > a">
+      <i class='icon-lock'></i> <xsl:value-of  select="."/>
+    </replace>
 
 
     <!-- Footer -->
