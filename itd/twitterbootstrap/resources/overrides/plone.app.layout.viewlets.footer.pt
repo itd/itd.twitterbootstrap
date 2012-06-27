@@ -2,7 +2,12 @@
 <div metal:define-macro="portal_footer"
   i18n:domain="plone"
   id="portal-footer">
-  <p> you can edit this footer in the itd.twitterbootstrap package.
+  <p>
+    This site's theme can be found on github at:
+    <a href="https://github.com/itd/itd.twitterbootstrap">https://github.com/itd/itd.twitterbootstrap</a>
+  </p>
+
+  <p>You can edit this footer in the itd.twitterbootstrap package.
     It's found in:
     <br />
     itd/twitterboostrap/resources/overrides/plone.app.layouts.viewlets.footer.pt
